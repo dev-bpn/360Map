@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -21,7 +22,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment)
+                getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
     }
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         latLngArrayList.add(new LatLng(27.728903, 85.331732));
 
         for (int i = 0; i < latLngArrayList.size(); i++) {
+
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngArrayList.get(i), 13));
 
             map.addMarker(new MarkerOptions()
                     .position(latLngArrayList.get(i))
